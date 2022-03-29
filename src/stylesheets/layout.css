@@ -1,0 +1,41 @@
+.header {
+  position: fixed;
+  right: 0;
+  left: 0;
+  top: 0;
+  z-index: 2;
+}
+.navbar {
+  background-color: tomato !important;
+}
+.navbar-brand {
+  color: white !important;
+  font-weight: bold;
+}
+.nav-link {
+  color: white !important;
+}
+.content {
+  margin-top: 80px;
+}
+.footer {
+  margin-top: 80px;
+  background-color: rgb(255, 159, 103);
+  text-align: center;
+  color: white;
+  padding: 10px;
+  position: fixed;
+  right: 0;
+  left: 0;
+  bottom: 0;
+}
+button {
+  background-color: tomato;
+  box-shadow: none;
+  border: 1px solid rgba(255, 255, 255, 0.644);
+  color: white;
+  padding: 5px;
+}
+button:hover {
+  background-color: #003f5c;
+}
