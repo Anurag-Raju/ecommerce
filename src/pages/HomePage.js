@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 function HomePage() {
+  const [searchKey, setSearchKey] = useState("");
+  const [filterType, setFilterType] = useState("");
   const [loading, setLoading] = useState(false);
   const { cartItems } = useSelector((state) => state.cartReducer);
   const navigate = useNavigate();
@@ -45,45 +47,69 @@ function HomePage() {
   return (
     <Layout loading={loading}>
       <div className="container">
+        <div className="d-flex w-50">
+          <input
+            className="form-control m-2"
+            type="text"
+            value={searchKey}
+            placeholder="search items"
+            onChange={(e) => setSearchKey(e.target.value)}
+          />
+          <select
+            className="form-control m-2"
+            value={filterType}
+            onChange={(e) => {
+              setFilterType(e.target.value);
+            }}
+          >
+            <option value="">All</option>
+            <option value="electronics">Electronics</option>
+            <option value="mobiles">Mobiles</option>
+            <option value="fashion">Fashion</option>
+          </select>
+        </div>
         <div className="row">
-          {products.map((product) => {
-            return (
-              <div className="col-md-4">
-                <div className="m-2 p-1 product position-relative">
-                  <div className="product-content">
-                    <p>{product.name}</p>
-                    <div className="text-center">
-                      <img
-                        src={product.imageURL}
-                        alt=""
-                        className="product-img"
-                      />
+          {products
+            .filter((obj) => obj.name.toLowerCase().includes(searchKey))
+            .filter((obj) => obj.category.includes(filterType))
+            .map((product) => {
+              return (
+                <div className="col-md-4">
+                  <div className="m-2 p-1 product position-relative">
+                    <div className="product-content">
+                      <p>{product.name}</p>
+                      <div className="text-center">
+                        <img
+                          src={product.imageURL}
+                          alt=""
+                          className="product-img"
+                        />
+                      </div>
                     </div>
-                  </div>
-                  <div className="product-actions">
-                    <h2>{product.price} RS/-</h2>
-                    <div className="d-flex">
-                      <button
-                        className="mx-2"
-                        onClick={() => {
-                          addToCart(product);
-                        }}
-                      >
-                        ADD TO CART
-                      </button>
-                      <button
-                        onClick={() => {
-                          navigate(`/productinfo/${product.id}`);
-                        }}
-                      >
-                        VIEW
-                      </button>
+                    <div className="product-actions">
+                      <h2>{product.price} RS/-</h2>
+                      <div className="d-flex">
+                        <button
+                          className="mx-2"
+                          onClick={() => {
+                            addToCart(product);
+                          }}
+                        >
+                          ADD TO CART
+                        </button>
+                        <button
+                          onClick={() => {
+                            navigate(`/productinfo/${product.id}`);
+                          }}
+                        >
+                          VIEW
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
         </div>
       </div>
     </Layout>

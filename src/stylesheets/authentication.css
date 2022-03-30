@@ -1,15 +1,53 @@
 .form-control {
   margin-top: 15px;
-  box-shadow: none;
 }
-.form-control:focus {
-  box-shadow: none;
-}
+
 .register-form {
   padding: 20px;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  background-color: white;
+  width: 460px;
 }
 .register-parent {
-  margin-top: 12%;
+  height: 100vh;
+  background-color: orange;
+}
+.register-top {
+  height: 50%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  background-color: tomato;
+}
+.register-parent .row {
+  height: 100vh;
+  align-items: center;
+}
+.z1 {
+  z-index: 1;
+}
+
+.login-form {
+  padding: 20px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  background-color: white;
+}
+.login-parent {
+  height: 100vh;
+  background-color: orange;
+}
+.login-bottom {
+  height: 50%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: tomato;
+}
+.login-parent .row {
+  height: 100vh;
+  align-items: center;
 }
