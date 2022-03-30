@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 function ProductInfo() {
+  const [loading, setLoading] = useState(false);
   const { cartItems } = useSelector((state) => state.cartReducer);
   const params = useParams();
   const [product, setProduct] = useState();
@@ -14,12 +15,15 @@ function ProductInfo() {
   }, []);
   async function getData() {
     try {
+      setLoading(true);
       const productTemp = await getDoc(
         doc(fireDB, "products", params.productid)
       );
       setProduct(productTemp.data());
+      setLoading(false);
     } catch (error) {
       console.log(error);
+      setLoading(false);
     }
   }
   const dispatch = useDispatch();
@@ -35,7 +39,7 @@ function ProductInfo() {
     });
   };
   return (
-    <Layout>
+    <Layout loading={loading}>
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-md-8">

@@ -1,11 +1,20 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../components/Layout";
 import { useDispatch, useSelector } from "react-redux";
 import { FaTrash } from "react-icons/fa";
 
 function CartPage() {
+  const [totalAmount, setTotalAmount] = useState(0);
   const dispatch = useDispatch();
   const { cartItems } = useSelector((state) => state.cartReducer);
+
+  useEffect(() => {
+    let temp = 0;
+    cartItems.forEach((item) => {
+      temp = temp + item.price;
+    });
+    setTotalAmount(temp);
+  }, [cartItems]);
 
   useEffect(() => {
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
@@ -50,6 +59,18 @@ function CartPage() {
           })}
         </tbody>
       </table>
+      <div className="d-flex justify-content-end">
+        <h1 className="total-amount">Total Amount={totalAmount}RS/-</h1>
+      </div>
+      <div className="d-flex justify-content-end mt-3">
+        <button
+        // onClick={() => {
+        //   placeOrder();
+        // }}
+        >
+          PLACE ORDER
+        </button>
+      </div>
     </Layout>
   );
 }

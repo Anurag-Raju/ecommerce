@@ -30,3 +30,14 @@
 .product-info-img {
   height: 70vh;
 }
+.total-amount {
+  background-color: orange;
+  padding: 10px;
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
+  font-weight: bold;
+}
+.total-amount:hover {
+  background-color: tomato;
+  color: white;
+}
