@@ -6,7 +6,7 @@ import fireDB from "../fireConfig";
 function OrdersPage() {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(false);
-
+  const userid = JSON.parse(localStorage.getItem("currentUser")).user.uid;
   useEffect(() => {
     getData();
   }, []);
@@ -31,37 +31,39 @@ function OrdersPage() {
   return (
     <Layout loading={loading}>
       <div className="p-2">
-        {orders.map((order) => {
-          return (
-            <table className="table mt-3 order">
-              <thead>
-                <tr>
-                  <th>Image</th>
-                  <th>Name</th>
-                  <th>Price</th>
-                </tr>
-              </thead>
-              <tbody>
-                {order.cartItems.map((item) => {
-                  return (
-                    <tr>
-                      <td>
-                        <img
-                          src={item.imageURL}
-                          alt=""
-                          height="80"
-                          width="80"
-                        />
-                      </td>
-                      <td>{item.name}</td>
-                      <td>{item.price}</td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          );
-        })}
+        {orders
+          .filter((obj) => obj.userid === userid)
+          .map((order) => {
+            return (
+              <table className="table mt-3 order">
+                <thead>
+                  <tr>
+                    <th>Image</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {order.cartItems.map((item) => {
+                    return (
+                      <tr>
+                        <td>
+                          <img
+                            src={item.imageURL}
+                            alt=""
+                            height="80"
+                            width="80"
+                          />
+                        </td>
+                        <td>{item.name}</td>
+                        <td>{item.price}</td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            );
+          })}
       </div>
     </Layout>
   );

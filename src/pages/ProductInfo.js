@@ -58,7 +58,7 @@ function ProductInfo() {
                 <div className="d-flex justify-content-end my-3">
                   <button
                     onClick={() => {
-                      addToCart();
+                      addToCart(product);
                     }}
                   >
                     ADD TO CART

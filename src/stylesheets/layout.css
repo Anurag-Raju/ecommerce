@@ -53,3 +53,9 @@ button:hover {
 a {
   text-decoration: none;
 }
+.nav-item button {
+  color: black !important;
+}
+.nav-tabs {
+  background-color: rgb(255, 175, 146);
+}

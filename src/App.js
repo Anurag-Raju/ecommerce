@@ -12,6 +12,7 @@ import "./stylesheets/authentication.css";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import OrdersPage from "./pages/OrdersPage";
+import AdminPage from "./pages/AdminPage";
 function App() {
   return (
     <div className="App">
@@ -47,6 +48,14 @@ function App() {
             element={
               <ProtectedRoutes>
                 <ProductInfo />
+              </ProtectedRoutes>
+            }
+          />
+          <Route
+            path="/admin"
+            element={
+              <ProtectedRoutes>
+                <AdminPage />
               </ProtectedRoutes>
             }
           />

@@ -21,6 +21,9 @@ function RegisterPage() {
       console.log(result);
       setLoading(false);
       toast.success("Registration Successfull");
+      setEmail("");
+      setPassword("");
+      setCpassword("");
     } catch (error) {
       console.log(error);
       setLoading(false);
@@ -65,7 +68,7 @@ function RegisterPage() {
               }}
             />
             <input
-              type="password"
+              type="text"
               className="form-control"
               placeholder="confirm password"
               value={cpassword}
